@@ -1,0 +1,25 @@
+{
+  "repos": [
+    {
+      "name": "lodash",
+      "src": "//unpkg.com/lodash@latest/lodash.min.js",
+      "exec": "window._"
+    },
+    {
+      "name": "moment",
+      "src": "//unpkg.com/moment@latest/min/moment.min.js",
+      "exec": "window.moment"
+
+    },
+    {
+      "name": "dayjs",
+      "src": " //unpkg.com/dayjs@latest/dayjs.min.js",
+      "exec": "window.dayjs"
+    },
+    {
+      "name": "immutable",
+      "src": " //unpkg.com/immutable@latest/dist/immutable.js",
+      "exec": "window.Immutable"
+    }
+  ]
+}

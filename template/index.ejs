@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>💻 Package Online Execution</title>
+</head>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h1 {
+    margin-bottom: 0.1em;
+  }
+  .ul, h1, span {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .ul {
+    margin-bottom: 0.6em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .ul > a {
+    margin: 0px 8px;
+  }
+  a {
+    text-decoration: none ;
+  }
+  a:hover {
+    text-decoration:none;
+    cursor:pointer;
+  }
+  .notice {
+    color: #bfbfbf;
+    margin-bottom: 1.2em;
+  }
+
+</style>
+
+<% repos.forEach(function(repo){ %>
+<!-- <%= repo.name %> -->
+<script src="<%= repo.src %>"></script>
+<% }); %>
+
+<body>
+  <h1>💻 Supported</h1>
+  <span class="notice">You can use these packages in window</span>
+  <% repos.forEach(function(repo){ %>
+  <div class="ul">
+    <a href="<%= repo.src %>" target="_blank">
+      <%= repo.name %>
+    </a>
+    <a href="//www.npmjs.com/package/<%=repo.name%>" target="_blank">
+      <img src="https://img.shields.io/npm/v/<%=repo.name%>/latest.svg" />
+    </a>
+  </div>
+  <% }); %>
+</body>
+
+<script>
+  function Pkg (name, exec) {
+    this.name = name
+    this.exec = exec
+  }
+  function colorLog (str, {
+    background = '#222',
+    color = '#bada55',
+    fontSize = '12px'
+  }) {
+    console.log(`%c ${str}`, `background: ${background}; color: ${color}; font-size: ${fontSize};`)
+  }
+  colorLog(
+    '💻 You can use these packages in browser debug tools: ',
+    {
+      fontSize: '18px'
+    }
+  )
+
+  <% repos.forEach(function(repo){ %>
+    colorLog('<%= repo.name %>', { color: '#855B32' } )
+  <% }); %>
+
+  console.table(
+    [
+      <% repos.forEach(function(repo){ %>
+        new Pkg('<%= repo.name %>', '<%= repo.exec %>'),
+      <% }); %>
+    ]
+  )
+</script>
+</html>
